@@ -1,5 +1,4 @@
 import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'init.dart';
@@ -33,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         onGenerateRoute: RouteManager.onGenerateRoute,
-        initialRoute: RouteManager.loginPage,
+        initialRoute: RouteManager.loadingPage,
       ),
     );
   }

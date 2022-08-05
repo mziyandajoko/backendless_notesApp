@@ -1,7 +1,4 @@
-import 'dart:js';
-import 'package:provider/provider.dart';
 import 'package:assignment2_2022/routes/route_manager.dart';
-import 'package:assignment2_2022/services/note_service.dart';
 import 'package:assignment2_2022/services/user_service.dart';
 import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +14,12 @@ class InitApp {
         iosApiKey: apiKeyIOS,
         applicationId: appID);
 
-    String result = await context.read<UserService>().CheckIfUserLoggedIn();
+    String result = await context.read<UserService>().checkIfUserLoggedIn();
     if (result == 'OK') {
-      // context
-      //     .read<UserService>()
-      //     .getNotes(context.read<UserService>().currentUser!.email);
-      Navigator.popAndPushNamed(context, RouteManager.noteCreatePage);
+      context
+          .read<UserService>()
+          .getNotes(context.read<UserService>().currentUser!.email);
+      Navigator.popAndPushNamed(context, RouteManager.noteListPage);
     } else {
       Navigator.popAndPushNamed(context, RouteManager.loginPage);
     }

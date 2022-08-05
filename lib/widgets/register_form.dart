@@ -1,9 +1,7 @@
 import 'package:assignment2_2022/services/helper_service.dart';
 import 'package:assignment2_2022/services/user_service.dart';
-import 'package:assignment2_2022/widgets/app_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tuple/tuple.dart';
 
 import '../miscellaneous/constants.dart';
 import '../miscellaneous/validators.dart';
@@ -41,6 +39,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   Widget build(BuildContext context) {
+
     return Form(
       key: context.read<UserManagementViewModel>().registerFormKey,
       child: Padding(
@@ -67,12 +66,7 @@ class _RegisterFormState extends State<RegisterForm> {
               decoration: formDecoration('Email', Icons.mail),
             ),
             ),
-            // Selector<UserService, bool>(
-            //   selector: (context, value) => value.userExists,
-            //   builder: (context, value, child){
-            //     return value ? Text('User already exists', style: TextStyle(color: Colors.red),) : Container();
-            //   },
-            // ),
+
 
             const SizedBoxH10(),
             TextFormField(
@@ -96,13 +90,6 @@ class _RegisterFormState extends State<RegisterForm> {
               },
               child: const Text('Register'),
             ),
-          // Selector<UserService, Tuple2>(
-          //   selector: (context, value, ) => Tuple2(value.showUserProgress, value.userProgressText),
-          //   builder: (context, value, child){
-          //     return value.item1 ? AppProgressIndicator(text: '${value.item2}') : Container();
-          //   },
-          // ),
-
           ],
         ),
       ),

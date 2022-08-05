@@ -1,4 +1,9 @@
+import 'package:assignment2_2022/services/helper_service.dart';
+import 'package:assignment2_2022/services/user_service.dart';
+import 'package:assignment2_2022/widgets/app_progress_indicator.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tuple/tuple.dart';
 
 import '../routes/route_manager.dart';
 import '../services/locator_service.dart';
@@ -16,32 +21,49 @@ class _NoteListPageState extends State<NoteListPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.lock),
-            ),
-            IconButton(
-              onPressed: () {
-                locator
-                    .get<NavigationAndDialogService>()
-                    .navigateTo(RouteManager.noteCreatePage);
-              },
-              icon: const Icon(Icons.add),
-            ),
-          ],
-          automaticallyImplyLeading: false,
-          title: const Text('List of Notes'),
-        ),
-        body: ListView.builder(
-          itemCount: 2,
-          itemBuilder: (context, index) {
-            return ListTile(
-              onTap: () {},
-              title: const Text('Title'),
-            );
-          },
-        ));
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              //log user out
+              logoutUserInUI(context);
+            },
+            icon: const Icon(Icons.lock),
+          ),
+          IconButton(
+            onPressed: () {
+              locator
+                  .get<NavigationAndDialogService>()
+                  .navigateTo(RouteManager.noteCreatePage);
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
+        automaticallyImplyLeading: false,
+        title: const Text('List of Notes'),
+      ),
+      body: Column(
+        children: [
+          ListView.builder(
+            itemCount: 2,
+            itemBuilder: (context, index) {
+              return ListTile(
+                onTap: () {},
+                title: const Text('Title'),
+              );
+            },
+          ),
+          Selector<UserService, Tuple2>(
+            selector: (context, value) =>
+                Tuple2(value.showUserProgress, value.userProgressText),
+            builder: (context, value, child) {
+              return value.item1
+                  ? AppProgressIndicator(text: '${value.item2}')
+                  : Container();
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -1,9 +1,6 @@
 import 'package:assignment2_2022/services/helper_service.dart';
-import 'package:assignment2_2022/services/user_service.dart';
-import 'package:assignment2_2022/widgets/app_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tuple/tuple.dart';
 
 import '../miscellaneous/constants.dart';
 import '../miscellaneous/validators.dart';
@@ -95,15 +92,15 @@ class _LoginFormState extends State<LoginForm> {
                     primary: Colors.deepOrange,
                     minimumSize: const Size(140, 40),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    resetPasswordInUI(context,
+                        email: emailController.text);
+                  },
                   child: const Text('Reset Password'),
                 ),
               ],
             ),
-            // Selector<UserService, Tuple2>(selector: (context, value) => Tuple2(value.showUserProgress, value.userProgressText),
-            //   builder: (context, value, child) {
-            //   return value.item1 ? AppProgressIndicator(text: '${value.item2}'):Container();
-            // },),
+
           ],
         ),
       ),

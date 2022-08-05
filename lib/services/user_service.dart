@@ -27,7 +27,7 @@ class UserService with ChangeNotifier {
   Future<String> resetPassword(String username) async {
     String result = 'OK';
     _showUserProgress = true;
-    _userProgressText = 'Busy sending reset instructions...please wait...';
+    _userProgressText = 'Busy sending reset email';
     notifyListeners();
     await Backendless.userService
         .restorePassword(username)

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:assignment2_2022/routes/route_manager.dart';
 import 'package:assignment2_2022/services/note_service.dart';
 import 'package:assignment2_2022/services/user_service.dart';
@@ -6,12 +8,10 @@ import 'package:backendless_sdk/backendless_sdk.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void createNewUserInUI(
-  BuildContext context, {
-  required String email,
-  required String password,
-  required String retypePassword
-}) async {
+void createNewUserInUI(BuildContext context,
+    {required String email,
+    required String password,
+    required String retypePassword}) async {
   FocusManager.instance.primaryFocus?.unfocus();
 
   if (email.isEmpty || password.isEmpty || retypePassword.isEmpty) {
@@ -23,9 +23,9 @@ void createNewUserInUI(
     BackendlessUser user = BackendlessUser()
       ..email = email.trim()
       ..password = password.trim()
-    ..putProperties({
-      'name': retypePassword.trim(),
-    });
+      ..putProperties({
+        'name': retypePassword.trim(),
+      });
 
     String result = await context.read<UserService>().createUser(user);
     if (result != 'OK') {
@@ -57,16 +57,15 @@ void loginUserInUI(BuildContext context,
   }
 }
 
+// reset password
 void resetPasswordInUI(BuildContext context, {required String email}) async {
   if (email.isEmpty) {
-    showSnackBar(context,
-        'Please enter your email address then click on Reset Password again!');
+    showSnackBar(context, 'Please enter your email address');
   } else {
     String result =
         await context.read<UserService>().resetPassword(email.trim());
     if (result == 'OK') {
-      showSnackBar(
-          context, 'Successfully sent password reset. Please check your mail');
+      showSnackBar(context, 'Successfully sent password reset.');
     } else {
       showSnackBar(context, result);
     }
