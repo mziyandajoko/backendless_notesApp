@@ -24,11 +24,9 @@ workflows:
           source: true
       cancel_previous_builds: false
     scripts:
-      - name: Build Android APK
-        working_directory: android
-        script: ./gradlew assembleRelease
-      artifacts:
-        - app/build/outputs/**/**/*.apk
+      - ...
+    artifacts:
+      - build/**/outputs/bundle/**/*.aab
     publishing:
       email:
         recipients:
