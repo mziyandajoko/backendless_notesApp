@@ -20,13 +20,16 @@ workflows:
         - push
       branch_patterns:
         - pattern: '*'
+        - pattern: develop
           include: true
           source: true
       cancel_previous_builds: false
     scripts:
-      - ...
-    artifacts:
-      - build/**/outputs/bundle/**/*.aab
+      - name: Build Android APK
+          working_directory: android
+          script: ./gradlew assembleRelease
+          artifacts:
+            - app/build/outputs/**/**/*.apk
     publishing:
       email:
         recipients:
