@@ -59,48 +59,48 @@ class NoteService with ChangeNotifier {
     return result;
   }
 
-  // Future<String> saveNoteEntry(String username, bool inUI) async {
-  //   String result = 'OK';
-  //   if (_noteEntry == null) {
-  //     _noteEntry =
-  //         NoteEntry(notes: convertNoteListToMap(_notes), username: username);
-  //   } else {
-  //     _noteEntry!.notes = convertNoteListToMap(_notes);
-  //   }
+  Future<String> saveNoteEntry(String username, bool inUI) async {
+    String result = 'OK';
+    if (_noteEntry == null) {
+      _noteEntry =
+          NoteEntry(notes: convertNoteListToMap(_notes), username: username);
+    } else {
+      _noteEntry!.notes = convertNoteListToMap(_notes);
+    }
 
-  //   if (inUI) {
-  //     _busySaving = true;
-  //     notifyListeners();
-  //   }
-  //   await Backendless.data
-  //       .of('NoteEntry')
-  //       .save(_noteEntry!.toJson())
-  //       .onError((error, stackTrace) {
-  //     result = error.toString();
-  //   });
-  //   if (inUI) {
-  //     _busySaving = false;
-  //     notifyListeners();
-  //   }
+    if (inUI) {
+      _busySaving = true;
+      notifyListeners();
+    }
+    await Backendless.data
+        .of('NoteEntry')
+        .save(_noteEntry!.toJson())
+        .onError((error, stackTrace) {
+      result = error.toString();
+    });
+    if (inUI) {
+      _busySaving = false;
+      notifyListeners();
+    }
 
-  //   return result;
-  // }
+    return result;
+  }
 
-//   void toggleNoteDone(int index) {
-//     _notes[index].done = !_notes[index].done;
-//     notifyListeners();
-//     setUIStateFlag(UIState.CHANGED);
-//   }
+  void toggleNoteDone(int index) {
+    _notes[index].done = !_notes[index].done;
+    notifyListeners();
+    //setUIStateFlag(UIState.CHANGED);
+  }
 
-//   void deleteNote(Note note) {
-//     _notes.remove(note);
-//     notifyListeners();
-//     setUIStateFlag(UIState.CHANGED);
-//   }
+  void deleteNote(Note note) {
+    _notes.remove(note);
+    notifyListeners();
+    // setUIStateFlag(UIState.CHANGED);
+  }
 
-//   void createNote(Note note) {
-//     _notes.insert(0, note);
-//     notifyListeners();
-//     setUIStateFlag(UIState.CHANGED);
-//   }
+  void createNote(Note note) {
+    _notes.insert(0, note);
+    notifyListeners();
+    // setUIStateFlag(UIState.CHANGED);
+  }
 }

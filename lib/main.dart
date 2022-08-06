@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         navigatorKey: navigatorKey,
         onGenerateRoute: RouteManager.onGenerateRoute,
-        initialRoute: RouteManager.loadingPage,
+        initialRoute: RouteManager.loginPage,
       ),
     );
   }
