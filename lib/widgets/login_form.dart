@@ -68,7 +68,9 @@ class _LoginFormState extends State<LoginForm> {
                 minimumSize: const Size.fromHeight(40),
               ),
               onPressed: () {
-                loginUserInUI(context, email: emailController.text.trim(), password: passwordController.text.trim());
+                loginUserInUI(context,
+                    email: emailController.text.trim(),
+                    password: passwordController.text.trim());
               },
               child: const Text('Login'),
             ),
@@ -93,14 +95,12 @@ class _LoginFormState extends State<LoginForm> {
                     minimumSize: const Size(140, 40),
                   ),
                   onPressed: () {
-                    resetPasswordInUI(context,
-                        email: emailController.text);
+                    resetPasswordInUI(context, email: emailController.text);
                   },
                   child: const Text('Reset Password'),
                 ),
               ],
             ),
-
           ],
         ),
       ),

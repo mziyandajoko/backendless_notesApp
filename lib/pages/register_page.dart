@@ -12,34 +12,32 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Register User'),
-      ),
-      body: Stack(
-        children: [
-          Column(
-            children: const [
-              Center(
-                child: SingleChildScrollView(
-                  child: RegisterForm(),
+        appBar: AppBar(
+          title: const Text('Register User'),
+        ),
+        body: Stack(
+          children: [
+            Column(
+              children: const  [
+                Center(child: SingleChildScrollView(child: RegisterForm(),
                 ),
-              ),
-            ],
-          ),
-          //             Selector<UserService, bool>(
-          //             selector: (context, value) => value.userExists,
-          //             builder: (context, value, child){
-          //             return value ? Text('User already exists', style: TextStyle(color: Colors.red),) : Container();
-          //             },
-          //             ),
-          //             Selector<UserService, Tuple2>(
-          //             selector: (context, value, ) => Tuple2(value.showUserProgress, value.userProgressText),
-          //             builder: (context, value, child){
-          //             return value.item1 ? AppProgressIndicator(text: '${value.item2}') : Container();
-          //             },
-          // ),
-        ],
-      ),
+                ),
+              ],
+            ),
+                Selector<UserService, bool>(
+                selector: (context, value) => value.userExists,
+                builder: (context, value, child){
+                return value ? Text('User already exists', style: TextStyle(color: Colors.red),) : Container();
+                },
+                ),
+                Selector<UserService, Tuple2>(
+                selector: (context, value, ) => Tuple2(value.showUserProgress, value.userProgressText),
+                builder: (context, value, child){
+                return value.item1 ? AppProgressIndicator(text: '${value.item2}') : Container();
+                },
+    ),
+          ],
+        ),
     );
   }
 }
